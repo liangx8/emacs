@@ -15,7 +15,20 @@
 
 (load "myasm")
 (load "mykey")
+(load "intel-hex-mode")
 (setq emacs-load-start-time (current-time))
 (setq default-tab-width 4)
+;; highline current line
+(require 'hl-line)
+(global-hl-line-mode t)
 
+(setq display-time-24hr-format t)
+(setq display-time-day-and-date t)
+(display-time-mode t)
+;; 取消自动保存
+(auto-save-mode 0)
 
+(set-face-foreground 'region "white")
+(set-face-background 'region "blue")
+(set-face-foreground 'secondary-selection "skyblue")
+(set-face-background 'secondary-selection "darkblue")
