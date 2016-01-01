@@ -8,6 +8,9 @@
 
 (load "init-auto-complete")
 (require 'go-mode-autoloads)
+;; to make go-autocomplete work, gocode should be install first.
+;; go get -u github.com/nsf/gocode
+;; export PATH=$PATH:$GOPATH/bin
 (require 'go-autocomplete)
 
 (load "myasm")
