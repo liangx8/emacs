@@ -1,6 +1,6 @@
 
 (defun find-project-root (path root-tag)
-"find the parent directory that include file \"ROOT\" recurly.\nUsage (find-project-root (file-name-directory buffer-file-name))"
+  "find the parent directory that include file \"ROOT\" recurly.\nUsage (find-project-root (file-name-directory buffer-file-name))"
   (setq current-dir nil)
   (if (string= path "/") nil
     (progn
@@ -11,18 +11,14 @@
         (if (string= na root-tag)
             (progn
               (setq not-match-p nil)
-              (setq current-dir path)
-              )
-          )
-        )
+              (setq current-dir path))))
       (if (not current-dir)
-
-        (setq current-dir (find-project-root (file-name-directory (directory-file-name path)) root-tag))
-        )
-      )
-    )
-  current-dir
-  )
+		  
+		  (setq current-dir
+				(find-project-root
+				 (file-name-directory
+				  (directory-file-name path)) root-tag)))))
+  current-dir)
 
 
 (global-set-key
@@ -34,11 +30,13 @@
 	   (equal 'java-mode major-mode)
 	   (progn
 		 (setq-local default-directory
-					 (find-project-root (file-name-directory buffer-file-name) "build.gradle"))
+					 (find-project-root
+					  (file-name-directory buffer-file-name) "build.gradle"))
 		 (setq-local compile-command "gradle build"))
 	 (progn
 	   (setq-local default-directory
-				   (find-project-root (file-name-directory buffer-file-name) "makefile"))
+				   (find-project-root
+					(file-name-directory buffer-file-name) "makefile"))
 	   (setq-local compile-command "make")))
    (if default-directory
 	   (call-interactively 'compile))
@@ -53,14 +51,18 @@
    (if (equal 'java-mode major-mode)
 	   (progn
 		 (setq-local default-directory
-					 (find-project-root (file-name-directory buffer-file-name) "build.gradle"))
+					 (find-project-root
+					  (file-name-directory buffer-file-name) "build.gradle"))
 		 (setq-local compile-command "gradle clean"))
 	 (progn
 	   (setq-local default-directory
-				   (find-project-root (file-name-directory buffer-file-name) "makefile"))
+				   (find-project-root
+					(file-name-directory buffer-file-name) "makefile"))
 	   (setq-local compile-command "make clean")))
    (if default-directory
 	   (call-interactively 'compile))
    ))
 
+
+(global-set-key (kbd "C-d") 'kill-whole-line)
 

@@ -13,11 +13,11 @@
 ;; export PATH=$PATH:$GOPATH/bin
 (require 'go-autocomplete)
 
-(defun goenv ()
-  "setup gocode environment"
-  (interactive)
-  (setenv "GOROOT" "/opt/go")
-  (setenv "GOPATH" (concat (getenv "HOME") "/gopath")))
+;(defun goenv ()
+;  "setup gocode environment"
+;  (interactive)
+;  (setenv "GOROOT" "/opt/go")
+;  (setenv "GOPATH" (concat (getenv "HOME") "/gopath")))
 
 
 (load "myasm")
