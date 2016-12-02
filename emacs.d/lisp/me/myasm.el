@@ -2,10 +2,11 @@
 
 (defvar myasm-mode-syntax-table nil "AVR Assembler 的语法？？？")
 (setq myasm-mode-syntax-table
-	  (let ( (synTable (make-syntax-table)))
-		(modify-syntax-entry ?\; "<" synTable)
-		(modify-syntax-entry ?\n ">" synTable)
-		synTable))
+	  (let ((st (make-syntax-table)))
+		(modify-syntax-entry ?\; "<" st)
+		(modify-syntax-entry ?\n ">" st)
+		st)
+	  )
 (define-derived-mode myasm-mode prog-mode "myasm")							 
 
 (setq asm-constants-regexp "\\_<\\([0-9][0-9a-fA-F]*[hH]\\|[0-9]+\\|[01]+b\\|0[xX][0-9a-fA-F]+\\|0[bB][01]+\\)\\_>")
@@ -22,7 +23,13 @@
 							   (,arm-registers-regexp . font-lock-variable-name-face)
 							   (,arm-direct-regexp . font-lock-keyword-face)
 							   (,asm-constants-regexp . font-lock-constant-face)))
-
+(defvar arm-asm-mode-syntax-table
+  (let ((st (make-syntax-table)))
+	(modify-syntax-entry ?@ "<" st)
+	(modify-syntax-entry ?\n ">" st)
+	st)
+  "Syntax table for arm-asm-mode")
+	
 (define-derived-mode arm-asm-mode myasm-mode "arm"
   "Major mode for editing ARM assembler language"
   (setq font-lock-defaults '(arm-font-lock-keywords))
