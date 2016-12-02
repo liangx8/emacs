@@ -1,5 +1,12 @@
 ; arm asm mode defintion
 
+(defvar myasm-mode-syntax-table nil "AVR Assembler 的语法？？？")
+(setq myasm-mode-syntax-table
+	  (let ( (synTable (make-syntax-table)))
+		(modify-syntax-entry ?\; "<" synTable)
+		(modify-syntax-entry ?\n ">" synTable)
+		synTable))
+(define-derived-mode myasm-mode prog-mode "myasm")							 
 
 (setq asm-constants-regexp "\\_<\\([0-9][0-9a-fA-F]*[hH]\\|[0-9]+\\|[01]+b\\|0[xX][0-9a-fA-F]+\\|0[bB][01]+\\)\\_>")
 (setq asm-label-regexp "^[_a-zA-Z].*:")
@@ -8,17 +15,15 @@
 (setq arm-asm-keywords-regexp (regexp-opt arm-asm-keywords 'symbols))
 (setq arm-registers-regexp "\\_<\\([rR][0-9]+\\|pc\\|lr\\|dp\\)\\_>")
 (setq arm-direct-regexp "\\.\\w*")
-(setq arm-asm-comment-regexp "@.*$")
 (setq arm-asm-keywords nil)
 
-(setq arm-font-lock-keywords `((,arm-asm-comment-regexp . font-lock-comment-face)
-							   (,arm-asm-keywords-regexp . font-lock-keyword-face)
+(setq arm-font-lock-keywords `((,arm-asm-keywords-regexp . font-lock-keyword-face)
 							   (,asm-label-regexp . font-lock-function-name-face)
 							   (,arm-registers-regexp . font-lock-variable-name-face)
 							   (,arm-direct-regexp . font-lock-keyword-face)
 							   (,asm-constants-regexp . font-lock-constant-face)))
 
-(define-derived-mode arm-asm-mode asm-mode "arm"
+(define-derived-mode arm-asm-mode myasm-mode "arm"
   "Major mode for editing ARM assembler language"
   (setq font-lock-defaults '(arm-font-lock-keywords))
   (setq mode-name "ARM assembler")
@@ -31,7 +36,6 @@
 (setq msc51-keywords
 	  '("add" "addc" "subb" "inc" "dec" "mul" "div" "da" "anl" "orl" "xrl" "rl" "rlc" "rr" "rrc" "swap" "mov" "clr" "cpl" "movc" "movx" "push" "pop" "xch" "xchd" "setb" "jc" "jnc" "jb" "jnb" "jbc" "acall" "lcall" "ret" "reti" "ljmp" "sjmp" "ajmp" "jmp" "jz" "jnz"  "cjne" "djnz" "nop"))
 (setq msc51-keywords-regexp (regexp-opt msc51-keywords 'symbols))
-
 (setq msc51-registers-regexp "\\_<\\([rR][0-9]+\\|[ab]\\|dptr\\|dp[hl]\\)\\_>")
 ;(setq msc51-direct-regexp "\\_<\\(\\.?equ\\|\\.?org\\|\\.?equ\\)\\_>")
 
@@ -42,7 +46,7 @@
 								 (,msc51-registers-regexp . font-lock-variable-name-face)
 								 (,asm-constants-regexp . font-lock-constant-face)))
 
-(define-derived-mode msc51-mode asm-mode "msc51"
+(define-derived-mode msc51-mode myasm-mode "msc51"
   "Major mode for editing MSC 51 assembler language"
   (setq font-lock-defaults '(msc51-font-lock-keywords))
   (setq mode-name "MSC 8051")
@@ -60,7 +64,8 @@
 							   (,asm-label-regexp . font-lock-function-name-face)
 							   (,avr-registers-regexp . font-lock-variable-name-face)
 							   (,asm-constants-regexp . font-lock-constant-face)))
-(define-derived-mode avr-mode asm-mode "avr"
+
+(define-derived-mode avr-mode myasm-mode "avr"
   "Major mode for editing ATMEL assembler language"
   (setq font-lock-defaults '(avr-font-lock-keywords))
   (setq mode-name "AVR asm")
