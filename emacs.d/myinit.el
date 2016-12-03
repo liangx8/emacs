@@ -34,9 +34,5 @@
 (display-time-mode t)
 ;; 取消自动保存
 (auto-save-mode 0)
-(add-hook 'prog-mode-hook
-		  (lambda nil
-			(load-theme 'leuven t)))
-
 
 ;(global-set-key [f3] 'isearch-forward)

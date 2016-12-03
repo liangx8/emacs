@@ -136,6 +136,17 @@
              (message "Making completion list ...%s" "done")))
     )
   )
+(add-hook 'prog-mode-hook
+		  (lambda nil
+			(load-theme 'leuven t)))
+
+(defun comment-annotations-highlight ()
+  "Hightlight comment annotations.
+This functions should be added to the hooks of major modes for programming."
+	(font-lock-add-keywords
+	 nil
+	 '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t))))
+(add-hook 'prog-mode-hook 'comment-annotations-highlight)
 
 ;(add-hook 'myasm-mode-hook
 ;		  (lambda nil
