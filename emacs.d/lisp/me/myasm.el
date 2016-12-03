@@ -1,12 +1,11 @@
 ; arm asm mode defintion
 
-(defvar myasm-mode-syntax-table nil "AVR Assembler 的语法？？？")
-(setq myasm-mode-syntax-table
+(defvar myasm-mode-syntax-table 
 	  (let ((st (make-syntax-table)))
 		(modify-syntax-entry ?\; "<" st)
 		(modify-syntax-entry ?\n ">" st)
 		st)
-	  )
+	  "Assembler 的语法？？？")
 (define-derived-mode myasm-mode prog-mode "myasm")							 
 
 (setq asm-constants-regexp "\\_<\\([0-9][0-9a-fA-F]*[hH]\\|[0-9]+\\|[01]+b\\|0[xX][0-9a-fA-F]+\\|0[bB][01]+\\)\\_>")
