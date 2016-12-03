@@ -70,7 +70,7 @@
   )
 ; avr mode definition
 (setq avr-keywords
-	  '("mov" "ldi" "lds" "ld" "add" "adc" "sub" "subi" "sbci" "com" "ser" "rjmp" "rcall" "lsl" "rsl" "movw" "xor" "lpm" "ijmp" "adiw" "and" "andi" "bld" "asr" "bclr" "brbc" "brbs" "brcc" "brcs" "breq" "brne" "brts" "brtc" "ret" "reti" "clr" "cbr" "cbi" "out"  "in" "inc" "dec" "sbrc" "sbrs" "sbic" "sbis" "sts" "st" "cpi" "cp" "cpc" "rol" "ror" "lsr" "sbr" "sbi" "sbc" "nop" "sei" "set" "clt" "cli" "pop"))
+	  '("mov" "ldi" "lds" "ld" "add" "adc" "sub" "subi" "sbci" "com" "ser" "rjmp" "rcall" "lsl" "rsl" "movw" "xor" "lpm" "ijmp" "adiw" "and" "andi" "bld" "asr" "bclr" "brbc" "brbs" "brcc" "brcs" "breq" "brne" "brts" "brtc" "ret" "reti" "clr" "cbr" "cbi" "out"  "in" "inc" "dec" "sbrc" "sbrs" "sbic" "sbis" "sts" "st" "cpi" "cp" "cpc" "rol" "ror" "lsr" "sbr" "sbi" "sbc" "nop" "sei" "set" "clt" "cli" "pop" "tst"))
 (setq avr-keywords-regexp (regexp-opt avr-keywords 'symbols))
 (setq avr-registers-regexp "\\_<\\([rR][0-9]+\\|[XxYyZz][lLhH]?\\)\\_>")
 ;(setq avr-keywords nil); clear memory
