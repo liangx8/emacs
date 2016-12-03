@@ -34,11 +34,9 @@
 (display-time-mode t)
 ;; 取消自动保存
 (auto-save-mode 0)
+;(add-hook 'myasm-mode-hook
+;		  (lambda nil
+;			(load-theme 'code t)))
 
-;(set-face-foreground 'region "white")
-;(set-face-background 'region "blue")
-;(set-face-foreground 'secondary-selection "skyblue")
-;(set-face-background 'secondary-selection "darkblue")
-;(desktop-save-mode 0)
 
 ;(global-set-key [f3] 'isearch-forward)

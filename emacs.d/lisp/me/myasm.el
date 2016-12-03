@@ -23,10 +23,17 @@
 							   (,arm-registers-regexp . font-lock-variable-name-face)
 							   (,arm-direct-regexp . font-lock-keyword-face)
 							   (,asm-constants-regexp . font-lock-constant-face)))
+; 参考 elisp > Syntax Tables > Syntax Descriptors > Syntax Flags
+; 有详细说明 modify-syntax-entry 的参数的含义
+; 1 2字节注释开始的第一个， 2 2字节注释开始的第二个， 3 2字节注释结束的第一个， 4 2字节注释结束的第二个
+; b c n 是区分注释的形式标记,例如： 注释开始用b 标记，那么就查找 用b结束的 注释结束
 (defvar arm-asm-mode-syntax-table
   (let ((st (make-syntax-table)))
 	(modify-syntax-entry ?@ "<" st)
+	(modify-syntax-entry ?# "<" st)
 	(modify-syntax-entry ?\n ">" st)
+	(modify-syntax-entry ?/ ". 124" st)
+	(modify-syntax-entry ?* ". 23c" st)
 	st)
   "Syntax table for arm-asm-mode")
 	
@@ -130,9 +137,9 @@
     )
   )
 
-(add-hook 'asm-mode-hook
-		  (lambda nil
-			(setq tab-stop-list
-							'(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))))
+;(add-hook 'myasm-mode-hook
+;		  (lambda nil
+;			(setq tab-stop-list
+;				  '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))))
 
 
