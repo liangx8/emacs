@@ -34,5 +34,5 @@
 (display-time-mode t)
 ;; 取消自动保存
 (auto-save-mode 0)
-
+(show-paren-mode 1)
 ;(global-set-key [f3] 'isearch-forward)
